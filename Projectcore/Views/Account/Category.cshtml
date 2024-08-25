@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Domain.Category>
+
+@{
+    ViewData["Title"] = "انتخاب گروه";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main" class="clearfix ad-post-page">
+    <div class="container">
+
+        <div class="breadcrumb-section">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li><a href="/">خانه</a></li>
+                <li>افزودن آگهی</li>
+            </ol><!-- breadcrumb -->
+            <h2 class="title">انتخاب دسته</h2>
+        </div><!-- banner -->
+
+
+
+        <div id="ad-post">
+            <div class="row category-tab">
+                <div class="col-lg-3 col-md-6"></div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="section cat-option select-category post-option">
+                        <h4>یک زیر شاخه را انتخاب کنید</h4>
+                        <ul role="tablist" class="nav nav-tabs">
+
+                            @if(Model.Count()> 0)
+                            {
+                                 foreach (var item in Model)
+                                {
+                                <li>
+                                    <a href="/Account/SubCategory?idcategory=@item.ID"  >
+                                        <span class="select">
+                                            <img src="/Upload/Category/@item.Icon" alt="@item.Title" class="img-">
+                                        </span>
+                                        @item.Title
+                                    </a>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li>موردی ثبت نشده</li>
+                            }
+
+                           
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12 offset-sm-2 text-center">
+                    <div class="ad-section">
+                        <a href="#">
+                            
+                            <div>آگهی شما در اینجا</div>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- row -->
+        </div>
+    </div><!-- container -->
+</section>

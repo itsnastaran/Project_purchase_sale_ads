@@ -1,0 +1,98 @@
+﻿@model Temp.ContactUsTemp
+<section id="main" class="clearfix contact-us">
+    <div class="container">
+
+        <!-- breadcrumb -->
+        <ol class="breadcrumb">
+            <li><a href="/">خانه</a></li>
+            <li>ارتباط</li>
+        </ol><!-- breadcrumb -->
+        <h2 class="title">ارتباط با ما</h2>
+
+        <div class="corporate-info">
+            <div class="row">
+                <!-- contact-info -->
+                <div class="col-md-4">
+                    <div class="contact-info">
+
+                        <h2>درباره شرکت ما</h2>
+                        <address>
+                            <p><strong>آدرس: </strong>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</p>
+                            <p><strong>شماره تماس:</strong> <a href="#">(123) 456-7890</a></p>
+                            <p><strong>ایمیل: </strong><a href="#"><span class="__cf_email__" data-cfemail="10797e767f50737f7d60717e693e737f7d">[ایمیل&#160;محافظت شده]</span></a></p>
+                        </address>
+
+                        <ul class="social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div><!-- contact-info -->
+                <!-- feedback -->
+                <div class="col-md-8">
+                    <div class="feedback">
+                        <h2>نظرات خود را با ما درمیان بگذارید</h2>
+                        <form id="contact-form" class="contact-form" name="contact-form" method="post" asp-controller="Home" asp-action="ContactUs">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="NameFamily" class="control-label"></label>
+                                        <input asp-for="NameFamily" class="form-control" placeholder="نام" />
+                                        <span asp-validation-for="NameFamily" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input asp-for="Email" class="form-control"placeholder="ایمیل" />
+                                        <span asp-validation-for="Email" class="text-danger" ></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Title" class="control-label"></label>
+                                        <input asp-for="Title" class="form-control" placeholder="موضوع" />
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label asp-for="Message" class="control-label"></label>
+                                        <textarea asp-for="Message" class="form-control" placeholder="پیام" ></textarea>
+                                        <span asp-validation-for="Message" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input  type="text"  id="Captcha" maxlength="3" name="Captcha" placeholder="حاصل" required title="حاصل را وارد نمایید" class="form-control"/>
+                                 <img onclick="refcaptcha()"  id="imgcpatcha" src="/Captcha/CaptchaImage/123123" style="" >
+                                       <i class="fa fa-refresh" style="cursor:pointer;" onclick="refcaptcha()"></i>                     
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn">ارسال پیام</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- feedback -->
+            </div><!-- row -->
+        </div>
+    </div><!-- container -->
+</section>
+
+@section Scripts {
+     <script>
+        function refcaptcha(){
+            var d = new Date();
+            $("#imgcpatcha").attr("src","/Captcha/CaptchaImage?"+d.getTime());
+
+        }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

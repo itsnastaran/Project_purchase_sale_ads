@@ -1,0 +1,91 @@
+﻿@{
+    var listad = ViewBag.AdNew;
+    var error = ViewBag.ErrorAdNew;
+    var pic = ViewBag.AdPic;
+       var cat = ViewBag.AdCAt;
+
+}
+
+<div class="section featureds">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="featured-top">
+                <h4>جدیدترین آگهی‌ها</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- featured-slider -->
+    <div class="featured-slider">
+        <div id="featured-slider-two">
+            <!-- featured -->
+            @if (listad == null)
+            {
+                <div class="featured">
+                    <span>@error</span>
+                </div>
+
+            }
+            else
+            {
+                foreach (var item in listad)
+                {
+                    <div class="featured">
+                        <div class="featured-image">
+
+                            @if (pic != null)
+                            {
+                                foreach (var p in pic)
+                                {
+                                    if (p.IDAd == item.ID)
+                                    {
+                                        <a href="/Home/AdSingel?id=@item.ID"><img src="/Upload/Ad/@p.Title" alt="" class="img-fluid"></a>
+                                    }
+
+                                }
+                            }
+                        </div>
+
+                        <!-- ad-info -->
+                <div class="ad-info">
+                            <h3 class="item-price">@item.Price تومان</h3>
+                            <h4 class="item-title"><a href="#">@item.Title</a></h4>
+                            <div class="item-cat">
+                                 @if(cat == null)
+                                    {
+                                        <span>دسته ثبت نشده</span>
+
+                                    }else
+                                    {
+                                        foreach (var c in cat)
+                                        {
+                                            if (c.IDAd == item.ID)
+                                            {
+                                                 <span><a href="/Home/CategoryDetails?idcategory=@c.IDCategory">@c.Title</a></span>
+                                            }
+                                        }
+                                    }
+                                
+                            </div>
+                        </div><!-- ad-info -->
+                        <!-- ad-meta -->
+                <div class="ad-meta">
+                            <div class="meta-content">
+                                <span class="dated"><a href="#">@item.Date</a></span>
+                            </div>
+                            <!-- item-info-right -->
+                    <div class="user-option pull-right">
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="ایران"><i class="fa fa-map-marker"></i> </a>
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="شخصی"><i class="fa fa-user"></i> </a>
+                            </div><!-- item-info-right -->
+                </div><!-- ad-meta -->
+            </div>
+
+                    <!-- featured -->
+                }
+            }
+
+
+        </div><!-- featured-slider -->
+    </div><!-- #featured-slider -->
+</div>

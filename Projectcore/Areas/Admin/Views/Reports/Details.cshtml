@@ -1,0 +1,44 @@
+﻿@model Domain.Report
+
+@{
+    ViewData["Title"] = "جزییات گزارش";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>جزییات گزارش</h1>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="callout callout-info">
+            <h6><i class="fa fa-arrow-left"></i>  @Html.DisplayNameFor(model => model.status) :</h6>
+            @Html.DisplayFor(model => model.status)
+        </div>
+        <div class="callout callout-info">
+            <h6><i class="fa fa-arrow-left"></i>  @Html.DisplayNameFor(model => model.Date) :</h6>
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <div class="callout callout-info">
+            <h6><i class="fa fa-arrow-left"></i>  @Html.DisplayNameFor(model => model._Report_SaleAd) :</h6>
+            @Html.DisplayFor(model => model._Report_SaleAd.Brand)
+        </div>
+
+
+        <a asp-action="Edit" asp-route-id="@Model?.ID"><span class="badge bg-success "><i class=" fa fa-edit fa-2x"></i></span></a>
+        <a asp-action="Index"><span class="badge bg-info"><i class=" fa fa-undo fa-2x"></i></span></a>
+
+    </div>
+    <div class="col-1"></div>
+
+
+</div>
+
+

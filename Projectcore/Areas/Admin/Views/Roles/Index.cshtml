@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "نقش ها";
+}
+
+<h1 class="mt-4">نقش ها</h1>
+<a asp-action="Create"><i style=" margin-right: 10px ; margin-top: 20px ;" class="iconadd fa-2x fa fa-plus-circle text-success"></i></a>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>نام</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                    foreach (var role in Model)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@role.Name</td>
+                        </tr>
+
+                        i++;
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

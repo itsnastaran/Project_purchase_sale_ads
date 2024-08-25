@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Domain.SaleAd>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "جستجو";
+    var pic = ViewBag.AdPic;
+    var cat = ViewBag.AdCAt;
+}
+
+<section id="main" class="clearfix category-page main-categories">
+    <div class="container">
+        <div class="breadcrumb-section">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li><a href="/">خانه</a></li>
+                <li>جستجو</li>
+            </ol><!-- breadcrumb -->
+
+        </div>
+
+        <div class="category-info">
+            <div class="row">
+                <!-- recommended-ads -->
+                <div class="col-md-12 col-lg-12">
+                    <div class="section recommended-ads">
+
+                        @if (Model.Count() !=0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <!-- ad-item -->
+                                <div class="ad-item row">
+                                    <!-- item-image -->
+                            <div class="item-image-box col-lg-4">
+                                        <div class="item-image">
+
+                                            @if (pic != null)
+                                            {
+                                                foreach (var p in pic)
+                                                {
+                                                    if (p.IDAd == item.ID)
+                                                    {
+                                                        <a href="/Home/AdSingel?id=@item.ID"><img src="/Upload/Ad/@p.Title" alt="Image" class="img-fluid"></a>
+
+                                                    }
+
+                                                }
+                                            }
+
+
+                                        </div><!-- item-image -->
+                            </div>
+
+                                    <!-- rending-text -->
+                            <div class="item-info col-lg-8">
+                                        <!-- ad-info -->
+                                <div class="ad-info">
+                                            <h3 class="item-price"> @item.Price تومان </h3>
+                                            <h4 class="item-title"><a href="#">@item.Title</a></h4>
+                                            <div class="item-cat">
+                                                @if (cat == null)
+                                                {
+                                                    <span>دسته ثبت نشده</span>
+
+                                                }
+                                                else
+                                                {
+                                                    foreach (var c in cat)
+                                                    {
+                                                        if (c.IDAd == item.ID)
+                                                        {
+                                                            <span><a href="#">@c.Title</a></span>
+                                                        }
+                                                    }
+                                                }
+
+                                            </div>
+                                        </div><!-- ad-info -->
+                                        <!-- ad-meta -->
+                                <div class="ad-meta">
+                                            <div class="meta-content">
+                                                <span class="dated"><a href="#">@item.Date</a></span>
+                                                <a href="#" class="tag"><i class="fa fa-tags"></i>جدید</a>
+                                            </div>
+                                            <!-- item-info-right -->
+                                    <div class="user-option pull-right">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="ایران">
+                                                    <i class="fa fa-map-marker"></i>
+                                                </a>
+                                                <a class="online" href="#" data-toggle="tooltip" data-placement="top" title="شخصی">
+                                                    <i class="fa fa-user"></i>
+                                                </a>
+                                            </div><!-- item-info-right -->
+                                </div><!-- ad-meta -->
+                            </div><!-- item-info -->
+                        </div>
+
+                                <!-- ad-item -->
+                            }
+                        }
+                        else
+                        {
+                            <div class="ad-item row">
+                                <span class="ad-item-text p-2">موردی یافت نشد!!</span>
+                            </div>
+                        }
+                        <div class="text-center">
+                            @Html.PagedListPager((IPagedList)Model,page=> Url.Action("Search" ,"Home", new {id = ViewBag.myid , page = page ,text = ViewBag.mytext }) ,
+                            new X.PagedList.Web.Common.PagedListRenderOptions{
+                            DisplayItemSliceAndTotal = false,
+                            ContainerDivClasses = new[] {"navigation"},
+                            LiElementClasses = new[] {"page-item"},
+                            PageClasses = new[] {"page-link"},
+                            DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            DisplayLinkToNextPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            DisplayLinkToPreviousPage =  X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            UlElementClasses = new[] {"pagination"},
+                            DisplayPageCountAndCurrentLocation = false,
+
+                            })
+                        </div><!-- pagination  -->
+                    </div>
+                </div><!-- recommended-ads -->
+
+
+            </div>
+        </div>
+    </div><!-- container -->
+</section>

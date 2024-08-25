@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "efc261a0-6658-4778-9a0b-d8902718227e": {
+      "ProjectGuid": "efc261a0-6658-4778-9a0b-d8902718227e",
+      "DisplayName": "Projectcore",
+      "ColorIndex": 0
+    },
+    "d23eb8ca-f7ef-4104-899b-0f11f73bd226": {
+      "ProjectGuid": "d23eb8ca-f7ef-4104-899b-0f11f73bd226",
+      "DisplayName": "Domain",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "e2039224-d3e4-4f48-b0bf-0c16680861b1": {
+      "ProjectGuid": "e2039224-d3e4-4f48-b0bf-0c16680861b1",
+      "DisplayName": "Utility",
+      "ColorIndex": 2
+    },
+    "df97dc4e-ed12-49f7-9d09-afb2553d9212": {
+      "ProjectGuid": "df97dc4e-ed12-49f7-9d09-afb2553d9212",
+      "DisplayName": "Temp",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

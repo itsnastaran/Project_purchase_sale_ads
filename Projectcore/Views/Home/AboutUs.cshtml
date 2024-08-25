@@ -1,0 +1,76 @@
+﻿@model Domain.AboutUs
+
+<section id="main" class="clearfix about-us page">
+		<div class="container">
+
+			<div class="breadcrumb-section">
+				<ol class="breadcrumb">
+					<li><a href="/">خانه</a></li>
+					<li>درباره ما</li> 
+				</ol><!-- breadcrumb -->						
+				<h2 class="title">درباره ما</h2>	
+			</div><!-- banner -->
+			@if(Model == null)
+			{
+				<div class="section about">
+					<span>موردی تاکنون ثبت نشده است</span>
+				</div>
+			}
+			else
+			{
+				<div class="section about">
+				<div class="about-info">
+					<div class="row">
+						<!-- about-us-images -->
+						<div class="col-lg-6">
+							<div class="about-us-images">
+								<img src="/images/about-us/1.jpg" alt="About us Image" class="img-fluid">
+							</div>
+						</div><!-- about-us-images -->
+						
+						<!-- about-text -->
+						<div class="col-lg-6">
+							<div class="about-text">
+								<h3>@Model.Title</h3>
+								<!-- description-paragraph -->
+								<div class="description-paragraph">
+									<p>@Model.Description</p>
+								</div><!-- description-paragraph -->
+								
+							</div><!-- description-paragraph -->
+						</div><!-- about-text -->
+					</div>
+				</div><!-- about-info -->
+				
+
+				<div class="approach">
+					<div class="row">
+						<div class="col-md-4 text-center">
+							<div class="our-approach">
+								<h3>موبایل</h3>
+								<p>@Model.Mobile</p>
+							</div>
+						</div><!-- about-text -->
+
+						<!-- about-text -->
+						<div class="col-md-4 text-center">
+							<div class="our-approach">
+								<h3>آدرس</h3>
+								<p>@Model.Address</p></div>
+						</div><!-- about-text -->
+
+						<!-- about-text -->
+						<div class="col-md-4 text-center">
+							<div class="our-approach">
+								<h3>تلفن</h3>
+								<p>@Model.Tel</p></div>
+						</div><!-- about-text -->
+					</div>
+				</div>
+			</div><!-- about -->
+			}
+			
+			
+		
+		</div><!-- container -->
+	</section>

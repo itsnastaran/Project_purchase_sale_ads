@@ -1,0 +1,115 @@
+﻿@model Temp.UserTemp
+@{
+}
+
+<section id="main" class="clearfix  ad-profile-page">
+    <div class="container">
+
+        <div class="breadcrumb-section">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb mb-2">
+                <li><a href="/">خانه</a></li>
+                <li>پروفایل من</li>
+            </ol><!-- breadcrumb -->
+
+        </div><!-- banner -->
+
+        <div class="ad-profile section">
+            <div class="user-profile">
+                <div class="user-images">
+                    <img src="/images/user.jpg" alt="User Images" class="img-fluid">
+                </div>
+                <div class="user">
+                    <h2>سلام, <a href="#">@Model.NameFamily عزیز</a></h2>
+                    <h5>جزییات پروفایل شما</h5>
+                </div>
+
+                <div class="favorites-user">
+                    <div class="my-ads">
+                        <a href="my-ads.html">@ViewBag.MyAds<small>آگهی‌های من</small></a>
+                    </div>
+                    <div class="favorites">
+                        <a href="#">@ViewBag.MyFav<small>علاقه‌مندیها</small></a>
+                    </div>
+                </div>
+            </div><!-- user-profile -->
+
+            <ul class="user-menu">
+                <li><a href="/Account/Profile">پروفایل</a></li>
+                <li><a href="/Account/MyAd?id=@Model.Id">آگهی‌های من</a></li>
+                <li><a href="/Account/MyFavourite?id=@Model.Id">آگهی‌های موردعلاقه</a></li>
+               
+
+            </ul>
+        </div><!-- ad-profile -->
+
+        <div class="profile">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <form asp-action="Profile" asp-controller="Account" method="post">
+
+                        <input type="hidden" asp-for="Id" />
+                        <div class="user-pro-section">
+                            <!-- profile-details -->
+                            <div class="profile-details section">
+                                <h2>جزییات پروفایل</h2>
+                                <!-- form -->
+                                <div class="form-group">
+                                    <label asp-for="NameFamily"></label>
+                                    <input asp-for="NameFamily" class="form-control" placeholder="نام و نام خانوادگی" />
+                                    <span asp-validation-for="NameFamily" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="UserName"></label>
+                                    <input asp-for="UserName" disabled="disabled" class="form-control" placeholder="ایمیل" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Mobile"></label>
+                                    <input asp-for="Mobile" class="form-control" placeholder="موبایل" />
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Postalcode"></label>
+                                    <input asp-for="Postalcode" class="form-control" placeholder="کد پستی" />
+                                    <span asp-validation-for="Postalcode" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Address"></label>
+                                    <input asp-for="Address" class="form-control" placeholder="آدرس" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="SellerStatus"></label>
+                                    @{
+                                        string ck = "";
+                                        if (Model.SellerStatus == true)
+                                        {
+                                            ck = "checked";
+                                        }
+                                    }
+                                    <input @ck class="checkbox" type="checkbox" asp-for="SellerStatus" />
+                                </div>
+
+
+                            </div><!-- profile-details -->
+
+                            <input type="submit" class=" btn btn-outline-danger mb-20" value="به روز رسانی پروفایل" />
+
+                            <a href="/" class="btn cancle">انصراف</a>
+                        </div><!-- user-pro-edit -->
+                    </form>
+
+
+                </div><!-- profile -->
+
+
+            </div><!-- row -->
+        </div>
+    </div><!-- container -->
+</section>

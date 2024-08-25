@@ -1,0 +1,48 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "ثبت نام";
+}
+
+<section id="main" class="clearfix user-page">
+    <div class="container">
+        <div class="row text-center">
+            <!-- user-login -->
+            <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="user-account">
+                    <h2>فرم ثبت نام</h2>
+                    <!-- form -->
+
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control"  autocomplete="username" aria-required="true" placeholder="ایمیل"/>
+                </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="کلمه عبور"/>
+               </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="تکرار کلمه عبور"/>
+             </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">ثبت نام</button>
+        </form>
+   <div class="user-option">
+                        <div class="pull-right forgot-password">
+                            <a id="forgot-password" asp-page="./ForgotPassword">فراموشی رمز عبور</a>
+                        </div>
+                    </div><!-- forgot-password -->
+                </div>
+                <a asp-page="./Login" class="btn-primary" asp-route-returnUrl="@Model.ReturnUrl">قبلا ثبت نام کرده اید؟</a>
+
+            </div><!-- user-login -->
+        </div><!-- row -->
+    </div><!-- container -->
+</section>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,112 @@
+﻿@{
+    var ad = ViewBag.AdVisit;
+    var error = ViewBag.ErrorAdVisit;
+    var pic = ViewBag.AdPic;
+    var cat = ViewBag.AdCAt;
+}
+
+<div class="section trending-ads">
+    <div class="section-title tab-manu">
+        <h4>پربازدیدترین آگهی‌ها</h4>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="#hot-ads" class="active" data-toggle="tab">پربازدیدترین آگهی‌ها</a></li>
+        </ul>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- tab-pane -->
+        <div role="tabpanel" class="tab-pane fade active show" id="hot-ads">
+
+            @if (ad == null)
+            {
+                <div class="ad-item row">
+                    <span>@error</span>
+                </div>
+            }
+            else
+            {
+                foreach (var item in ad)
+                {
+                    <div class="ad-item row">
+                        <div class="item-image-box col-md-5 col-lg-3">
+                            <!-- item-image -->
+                    <div class="item-image">
+                                @if (pic != null)
+                                {
+                                    foreach (var p in pic)
+                                    {
+                                        if (p.IDAd == item.ID)
+                                        {
+                                            <a href="/Home/AdSingel?id=@item.ID"><img src="/Upload/Ad/@p.Title" alt="Image" class="img-fluid"></a>
+                                            <a href="#" class="verified" data-toggle="tooltip" data-placement="left" title="تایید شده"><i class="fa fa-check-square-o"></i></a>
+
+                                        }
+
+                                    }
+                                }
+                            </div><!-- item-image -->
+                </div><!-- item-image-box -->
+                        <!-- rending-text -->
+                <div class="item-info col-md-7 col-lg-9">
+                            <!-- ad-info -->
+                    <div class="ad-info">
+                                <h3 class="item-price">  @item.Price تومان  </h3>
+                                <h4 class="item-title"><a href="/Home/AdSingel?id=@item.ID">@item.Title</a></h4>
+                                <div class="item-cat">
+                                    @if(cat == null)
+                                    {
+                                        <span>دسته ثبت نشده</span>
+
+                                    }else
+                                    {
+                                        foreach (var c in cat)
+                                        {
+                                            if (c.IDAd == item.ID)
+                                            {
+                                                 <span><a href="/Home/CategoryDetails?idcategory=@c.IDCategory">@c.Title</a></span>
+                                            }
+                                        }
+                                    }
+                                  
+                                </div>
+                            </div><!-- ad-info -->
+                            <!-- ad-meta -->
+                    <div class="ad-meta">
+                                <div class="meta-content">
+                                    <span class="dated"><a href="#">@item.Date </a></span>
+                                    @if(cat == null)
+                                    {
+                                        <span>دسته ثبت نشده</span>
+
+                                    }else
+                                    {
+                                        foreach (var c in cat)
+                                        {
+                                            if (c.IDAd == item.ID)
+                                            {
+                                               <a href="#" class="tag"><i class="fa fa-tags"></i>@c.Title </a>
+                                            }
+                                        }
+                                    }
+                                    
+                                </div>
+                                <!-- item-info-right -->
+                        <div class="user-option pull-right">
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="ایران"><i class="fa fa-map-marker"></i> </a>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="شخصی"><i class="fa fa-user"></i> </a>
+                                </div><!-- item-info-right -->
+                    </div><!-- ad-meta -->
+                </div><!-- item-info -->
+            </div>
+
+                    <!-- ad-item -->
+                }
+            }
+
+
+
+        </div><!-- tab-pane -->
+    </div>
+</div>

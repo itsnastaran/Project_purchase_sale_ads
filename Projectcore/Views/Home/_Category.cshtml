@@ -1,0 +1,45 @@
+﻿@{
+    var category = ViewBag.Category;
+    var error = ViewBag.ErrorCategory;
+    var counts = ViewBag.CountCategory;
+}
+<div class="section category-ad text-center">
+    <ul class="category-list">
+
+        @if (category == null)
+        {
+            <li>
+                <span>@error</span>
+            </li>
+        }
+        else
+        {
+
+        
+            @foreach (var item in category)
+            {
+                <li class="category-item">
+                    <a href="/Home/CategoryDetails?idcategory=@item.ID">
+                        <div class="category-icon"><img src="/Upload/Category/@item.Icon" alt="@item.Title" class="img-fluid"></div>
+                        <span class="category-title">@item.Title</span>
+
+                        @foreach (var count in counts)
+                        {
+                            if(count.IDCategory == item.ID)
+                            {
+                                 <span class="category-quantity">@count.Count</span>
+                            }
+                        }
+
+                       
+                    </a>
+                </li>
+            }
+        }
+
+        <!-- category-item -->
+
+
+    </ul>
+</div>
+

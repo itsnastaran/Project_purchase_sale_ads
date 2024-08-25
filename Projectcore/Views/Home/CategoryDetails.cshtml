@@ -1,0 +1,221 @@
+﻿@model IEnumerable<Domain.SaleAd>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@{
+
+    var protype = ViewBag.ProductType;
+    var pic = ViewBag.AdPic;
+    var cat = ViewBag.AdCAt;
+    var allcat = ViewBag.AllCategory;
+    var catcount = ViewBag.CountCategory;
+    var thiscat = ViewBag.ThisCat;
+    ViewData["Title"] = "آگهی های دسته بندی شده";
+}
+<section id="main" class="clearfix category-page main-categories">
+    <div class="container">
+        <div class="breadcrumb-section">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li><a href="/">خانه</a></li>
+                <li>@thiscat.Title</li>
+            </ol><!-- breadcrumb -->
+            
+        </div>
+
+        <div class="category-info">
+            <div class="row">
+                <!-- accordion-->
+                <div class="col-lg-3 col-md-4">
+                    <div class="category-accordion tr-accordion" id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="heading-1">
+                                <button data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">همه دسته‌بندی‌ها</button>
+                            </div>
+
+                            <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion">
+                                <div class="card-body">
+                                    <ul>
+                                        @foreach(var ca in allcat)
+                                        {
+                                            <li><a href="/Home/CategoryDetails?idcategory=@ca.ID"><img src="/Upload/Category/@ca.Icon" alt="@ca.Title" class=" img-icon">@ca.Title
+                                                
+                                                @foreach (var count in catcount)
+                        {
+                                                            if(count.IDCategory == ca.ID)
+                                                            {
+                                                                 <span class="category-quantity">(@count.Count)</span>
+                                                            }
+                        }
+                                                </a></li>
+                                        }
+
+                                        
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" id="heading-2">
+                                <button class="collapsed" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">وضعیت</button>
+                            </div>
+                            <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion">
+                                <div class="card-body">
+       
+                                    @if (protype != null)
+                                    {
+                                        List<int> lschecked = ViewBag.Filter;
+                                       
+                                        <form asp-action="CategoryDetails" asp-controller="Home" method="get">
+                                            @foreach (var item in protype)
+                                            {
+                                                string ckeck = "";
+                                                if(lschecked.Contains(item.ID))
+                                                {
+                                                    ckeck = "checked";
+                                                }
+
+                                                <label ><input @ckeck type="checkbox" name="filter" id="filter" onclick="Submite()"  value="@item.ID">@item.Title</label>
+                                            }
+                                            <input type="hidden" value="@ViewBag.IDCategory" name="idcategory">
+                                            <input type="submit" id="Filter_Btn" style="display:none;">
+                                        </form>
+                                            
+    
+                                    }
+                                    else
+                                    {
+                                        <label>موردی ثبت نشده!!</label>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- accordion-->
+                </div>
+
+                <!-- recommended-ads -->
+                <div class="col-md-8 col-lg-7">
+                    <div class="section recommended-ads">
+                        <!-- featured-top -->
+                        <div class="featured-top">
+                            <h4>آگهی های مرتبط</h4>
+
+                        </div><!-- featured-top -->
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <!-- ad-item -->
+                                <div class="ad-item row">
+                                    <!-- item-image -->
+                            <div class="item-image-box col-lg-4">
+                                        <div class="item-image">
+
+                                            @if (pic != null)
+                                            {
+                                                foreach (var p in pic)
+                                                {
+                                                    if (p.IDAd == item.ID)
+                                                    {
+                                                        <a href="/Home/AdSingel?id=@item.ID"><img src="/Upload/Ad/@p.Title" alt="Image" class="img-fluid"></a>
+
+                                                    }
+
+                                                }
+                                            }
+
+
+                                        </div><!-- item-image -->
+                            </div>
+
+                                    <!-- rending-text -->
+                            <div class="item-info col-lg-8">
+                                        <!-- ad-info -->
+                                <div class="ad-info">
+                                            <h3 class="item-price"> @item.Price تومان </h3>
+                                            <h4 class="item-title"><a href="/Home/AdSingel?id=@item.ID">@item.Title</a></h4>
+                                            <div class="item-cat">
+                                                @if (cat == null)
+                                                {
+                                                    <span>دسته ثبت نشده</span>
+
+                                                }
+                                                else
+                                                {
+                                                    foreach (var c in cat)
+                                                    {
+                                                        if (c.IDAd == item.ID)
+                                                        {
+                                                            <span><a href="#">@c.Title</a></span>
+                                                        }
+                                                    }
+                                                }
+
+                                            </div>
+                                        </div><!-- ad-info -->
+                                        <!-- ad-meta -->
+                                <div class="ad-meta">
+                                            <div class="meta-content">
+                                                <span class="dated"><a href="#">@item.Date</a></span>
+                                                <a href="#" class="tag"><i class="fa fa-tags"></i>جدید</a>
+                                            </div>
+                                            <!-- item-info-right -->
+                                    <div class="user-option pull-right">
+                                                <a href="#" data-toggle="tooltip" data-placement="top" title="ایران">
+                                                    <i class="fa fa-map-marker"></i>
+                                                </a>
+                                                <a class="online" href="#" data-toggle="tooltip" data-placement="top" title="شخصی">
+                                                    <i class="fa fa-user"></i>
+                                                </a>
+                                            </div><!-- item-info-right -->
+                                </div><!-- ad-meta -->
+                            </div><!-- item-info -->
+                        </div>
+
+                                <!-- ad-item -->
+                            }
+                        }
+                        else
+                        {
+                            <div class="ad-item row">
+                                <span>موردی یافت نشد!!</span>
+                            </div>
+                        }
+
+                        <!-- pagination  -->
+                        <div class="text-center">
+                            @Html.PagedListPager((IPagedList)Model,page=> Url.Action("CategoryDetails" ,"Home", new {idcategory = ViewBag.IDCategory , page = page ,filter = ViewBag.Filter }) ,
+                            new X.PagedList.Web.Common.PagedListRenderOptions{
+                            DisplayItemSliceAndTotal = false,
+                            ContainerDivClasses = new[] {"navigation"},
+                            LiElementClasses = new[] {"page-item"},
+                            PageClasses = new[] {"page-link"},
+                            DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            DisplayLinkToNextPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            DisplayLinkToPreviousPage =  X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+                            UlElementClasses = new[] {"pagination"},
+                            DisplayPageCountAndCurrentLocation = false,
+
+                            })
+                        </div><!-- pagination  -->
+                    </div>
+                </div><!-- recommended-ads -->
+
+
+            </div>
+        </div>
+    </div><!-- container -->
+</section>
+
+@section Scripts
+{
+    <script>
+         function Submite() {
+        document.getElementById("Filter_Btn").click()
+    }
+    </script>
+}

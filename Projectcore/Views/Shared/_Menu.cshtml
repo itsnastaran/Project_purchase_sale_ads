@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Projectcore.Data;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var menu = ViewBag.Menu;
+    var errormenu = ViewBag.ErrorMenu;
+}
+
+<header id="header" class="clearfix">
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tr-mainmenu" aria-controls="tr-mainmenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa fa-align-justify"></i></span>
+            </button>
+            <a class="navbar-brand" href="/"><img class="img-fluid" src="/images/logo.png" alt="Logo"></a>
+
+            <div class="collapse navbar-collapse" id="tr-mainmenu">
+                <ul class="nav navbar-nav">
+
+
+                    @{
+                        if (menu == null)
+                        {
+                            <li>@errormenu</li>
+
+                        }
+                        else
+                        {
+                            foreach (var item in menu)
+                            {
+                                <li><a href="@item.Link">@item.Title</a></li>
+                            }
+                        }
+                    }
+
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                 <a href="/Account/Category" class="btn">افزودن آگهی شما</a>
+                     
+                @{
+                    
+                    if (SignInManager.IsSignedIn(User))
+                    {
+                        
+                        <ul class="sign-in">
+                            
+                        @if(User.IsInRole("user"))
+                        {
+                            <li><a href="/Account/Profile"><i class="fa fa-user"></i></a> </li>
+                        }
+                        else if(User.IsInRole("mainadmin"))
+                        {
+                            <li><a href="/Admin/Admin/Index"><i class="fa fa-user"></i></a></li>
+                        }
+                            <li><a href="/Identity/Account/Logout">خروج</a></li>
+                        </ul>
+                        
+                    }
+                    else
+                    {
+                        <!-- sign-in -->
+                        <ul class="sign-in">
+
+                            <li><a href="/Identity/Account/Login">ورود</a></li>
+                            <li><a href="/Identity/Account/Register">ثبت‌نام</a></li>
+                        </ul>
+                          <!-- sign-in -->
+                    }
+                }
+
+                
+            </div>
+
+        </div><!-- container -->
+    </nav><!-- navbar -->
+</header>

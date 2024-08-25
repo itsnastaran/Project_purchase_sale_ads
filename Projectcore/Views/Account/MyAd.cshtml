@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Temp.AdTemp>
+@{
+}
+<section id="main" class="clearfix myads-page">
+    <div class="container">
+
+        <div class="breadcrumb-section">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li><a href="/">خانه</a></li>
+                <li>پروفایل من</li>
+            </ol><!-- breadcrumb -->
+
+        </div><!-- banner -->
+
+        <div class="ad-profile section">
+            <div class="user-profile">
+                <div class="user-images">
+                    <img src="/images/user.jpg" alt="User Images" class="img-fluid">
+                </div>
+                <div class="user">
+                    <h2>سلام, <a href="#">@Model.First().NameFamily عزیز</a></h2>
+                    <h5>جزییات پروفایل شما</h5>
+                </div>
+
+                <div class="favorites-user">
+                    <div class="my-ads">
+                        <a href="my-ads.html">@ViewBag.MyAds<small>آگهی‌های من</small></a>
+                    </div>
+                    <div class="favorites">
+                        <a href="#">@ViewBag.MyFav<small>علاقه‌مندیها</small></a>
+                    </div>
+                </div>
+            </div><!-- user-profile -->
+
+            <ul class="user-menu">
+                <li><a href="/Account/Profile">پروفایل</a></li>
+                <li><a href="/Account/MyAd?id=@Model.First().Userid">آگهی‌های من</a></li>
+                <li><a href="/Account/MyFavourite?id=@Model.First().Userid">آگهی‌های موردعلاقه</a></li>
+
+            </ul>
+        </div><!-- ad-profile -->
+
+        <div class="ads-info">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="my-ads section">
+                        <h2>آگهی‌های من</h2>
+
+                        @if (Model.FirstOrDefault().ID > 0   )
+                        {
+                        @foreach (var item in Model)
+                        {
+                            <!-- ad-item -->
+                            <div class="ad-item row">
+                                <!-- item-image -->
+                            <div class="item-image-box col-lg-4">
+                                    <div class="item-image">
+                                        <a href="/Home/AdSingel?id=@item.ID"><img src="/Upload/Ad/@item.Pic" alt="Image" class="img-fluid"></a>
+                                    </div><!-- item-image -->
+                            </div>
+
+                                <!-- rending-text -->
+                            <div class="item-info col-lg-8">
+                                    <!-- ad-info -->
+                                <div class="ad-info">
+                                         <h3 class="item-price">  @item.Price تومان  </h3>
+                                        <h4 class="item-title"><a href="#">@item.Title</a></h4>
+                                        <div class="item-cat">
+                                            <span><a href="/Home/CategoryDetails?idcategory=@item.IDCategpry">@item.Category</a></span>
+
+                                        </div>
+                                    </div><!-- ad-info -->
+                                    <!-- ad-meta -->
+                                <div class="ad-meta">
+                                        <div class="meta-content">
+                                            <span class="dated">پست شده در: <a href="#">@item.Date </a></span>
+                                            @{
+                                                string active = "";
+                                                if(item.IsActive == true)
+                                                {
+                                                    active = "تایید شده";
+                                                }
+                                                else
+                                                {
+                                                    active = "تایید نشده";
+                                                }
+                                            }
+                                            <span class="visitors">وضعیت نمایش: @active</span>
+                                        </div>
+                                        <!-- item-info-right -->
+                                    <div class="user-option pull-right">
+                                            <a class="edit-item" href="/Account/EditAd?id=@item.ID" data-toggle="tooltip" data-placement="top" title="ویرایش آگهی"><i class="fa fa-pencil"></i></a>
+                                            <a class="delete-item" href="/Account/DeleteAd?id=@item.ID&idu=@item.Userid" data-toggle="tooltip" data-placement="top" title="حذف آگهی"><i class="fa fa-times"></i></a>
+                                        </div><!-- item-info-right -->
+                                </div><!-- ad-meta -->
+                            </div><!-- item-info -->
+                        </div>
+
+                            <!-- ad-item -->
+                        }
+                        }
+                        else
+                        {
+                            <span>موردی پیدا نشد</span>
+                        }
+                    </div>
+                </div><!-- my-ads -->
+
+
+            </div><!-- row -->
+        </div><!-- row -->
+    </div><!-- container -->
+</section>

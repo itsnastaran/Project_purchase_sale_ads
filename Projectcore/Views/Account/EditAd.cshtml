@@ -1,0 +1,211 @@
+﻿@model Domain.SaleAd
+ @using Domain;
+ @using Projectcore.Models;
+ @using Projectcore.Data;
+
+@{
+    var CategoryDetail = ViewBag.CategoryDetail;
+    var ProductTypeId = ViewBag.ProductTypeId;
+    var TypeofAd = ViewBag.TypeOfAdId;
+    var ErrorShow = ViewBag.ErrorShow;
+    ViewData["Title"] = "ثبت آگهی";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main" class="clearfix ad-details-page">
+    <div class="container">
+
+        <div class="breadcrumb-section">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li><a href="/">خانه</a></li>
+                <li>ویرایش آگهی</li>
+            </ol><!-- breadcrumb -->
+
+        </div><!-- banner -->
+
+        <div class="adpost-details">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <form asp-action="EditAd">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ID" />
+                        <input type="hidden" asp-for="SubCategoryId" />
+                        <input type="hidden" asp-for="CategryID" />
+                        <input type="hidden" asp-for="Date" />
+                        <input type="hidden" asp-for="Status" />
+                        <input type="hidden" asp-for="SpecialDate" />
+                        <input type="hidden" asp-for="Special" />
+                        <input type="hidden" asp-for="Visits" />
+                        <input type="hidden" asp-for="UserID" />
+                        <fieldset>
+                            <div class="section postdetails">
+                                <h4>محصول و خدمت خود را بفروشید  <span class="pull-right">* فیلدهای اجباری</span></h4>
+                                <div class="form-group selected-product">
+                                    <ul class="select-category list-inline">
+                                        <li>
+                                            <a href="/">
+                                                <span class="select">
+                                                    <img src="/Upload/Category/@ViewBag.Icon" alt="@ViewBag.TitleCataegory" class="img-fluid">
+                                                </span>
+                                                @ViewBag.TitleCataegory
+                                            </a>
+                                        </li>
+
+                                        <li class="active">
+                                            <a href="#">@ViewBag.TitleSubCategory</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <div class="row form-group">
+                                    <label class="col-sm-3">نوع آگهی<span class="required">*</span></label>
+                                    <div class="col-sm-9 user-type">
+
+                                        @if (TypeofAd == null)
+                                        {
+                                            <span>@ErrorShow</span>
+                                        }
+                                        else
+                                        {
+                                            @foreach (var item in ViewBag.TypeOfAdId)
+                                            {
+                                                <input type="radio" name="TypeOfAdId" value="@item.ID" id="TypeOfAdId"> <label>@item.Title </label>
+                                            }
+
+                                        }
+                                    </div>
+                                </div>
+                                <div class="row form-group add-title">
+                                    <label asp-for="Title" class="col-sm-3 label-title"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="Title" class="form-control" id="text" placeholder=" مثال: عنوان را بنویسید " />
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group select-condition">
+                                    <label class="col-sm-3">وضعیت<span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        @if (ProductTypeId == null)
+                                        {
+                                            <span>@ErrorShow</span>
+                                        }
+                                        else
+                                        {
+                                            @foreach (var item in ViewBag.ProductTypeId)
+                                            {
+
+                                                <input type="radio" name="ProductTypeId" value="@item.ID" id="ProductTypeId"> <label>@item.Title </label>
+                                            }
+
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="row form-group select-price">
+                                    <label class="col-sm-3 label-title">قیمت</label>
+                                    <div class="col-sm-9">
+                                        <label asp-for="Price"></label>
+                                        <input asp-for="Price" class="form-control" />
+                                        <span asp-validation-for="Price" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="row form-group brand-name">
+                                    <label asp-for="Brand" class="col-sm-3 label-title"></label>
+
+                                    <div class="col-sm-9">
+                                        <input asp-for="Brand" class="form-control" placeholder="نام برند" />
+                                        <span asp-validation-for="Brand" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row form-group additional">
+                                    <label class="col-sm-3 label-title">اطلاعات بیشتر<span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox">
+                                            @if (CategoryDetail == null)
+                                            {
+                                                <span>@ErrorShow</span>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in ViewBag.CategoryDetail)
+                                                {
+                                                    <label><input type="checkbox" name="CategoryDetail" id="CategoryDetail" value="@item.ID"> @item.Title</label>
+
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group model-name">
+                                    <label asp-for="Model" class="col-sm-3 label-title"></label>
+                                    <div class="col-sm-9">
+                                        <input asp-for="Model" class="form-control" placeholder="مدل محصول" />
+                                        <span asp-validation-for="Model" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row form-group item-description">
+                                    <label asp-for="Description" class="col-sm-3 label-title"></label>
+                                    <div class="col-sm-9">
+                                        <textarea asp-for="Description  " class="form-control" placeholder="در مورد محصول خودتان توضیح دهید" rows="3"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="row form-group item-description">
+                                    <label asp-for="Text" class="col-sm-3 label-title"></label>
+                                    <div class="col-sm-9">
+                                        <textarea asp-for="Text" class="form-control" placeholder="در مورد محصول خودتان توضیح دهید" rows="8" maxlength="100" id="TextAd"></textarea>
+                                        <span asp-validation-for="Text" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-9 offset-sm-3">
+                                        <p id="chars"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">ویرایش آگهی شما</button>
+
+
+                        </fieldset>
+                    </form>
+                </div>
+
+
+
+            </div><!-- photos-ad -->
+        </div>
+    </div><!-- container -->
+</section>
+
+
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<script>
+        var maxLength = 100;
+        $('#TextAd').ready(function(){
+            var length=$(this).val().length;
+            var length = maxLength-length;
+      $('#chars').text(length);
+        });
+    $('#TextAd').keyup(function() {
+      var length = $(this).val().length;
+      var length = maxLength-length;
+      $('#chars').text(length);
+    });
+</script>
+
+}

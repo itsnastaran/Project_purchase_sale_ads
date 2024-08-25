@@ -1,0 +1,12 @@
+D:\coreprj\Projectcore\Utility\bin\Debug\net6.0\Utility.deps.json
+D:\coreprj\Projectcore\Utility\bin\Debug\net6.0\Utility.dll
+D:\coreprj\Projectcore\Utility\bin\Debug\net6.0\ref\Utility.dll
+D:\coreprj\Projectcore\Utility\bin\Debug\net6.0\Utility.pdb
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\Utility.csproj.AssemblyReference.cache
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\Utility.GeneratedMSBuildEditorConfig.editorconfig
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\Utility.AssemblyInfoInputs.cache
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\Utility.AssemblyInfo.cs
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\Utility.csproj.CoreCompileInputs.cache
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\Utility.dll
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\ref\Utility.dll
+D:\coreprj\Projectcore\Utility\obj\Debug\net6.0\Utility.pdb

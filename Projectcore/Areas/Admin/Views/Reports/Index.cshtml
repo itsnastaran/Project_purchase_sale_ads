@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Domain.Report>
+
+@{
+    ViewData["Title"] = "آگهی های گزارش شده";
+}
+
+<h1 class="mt-4">آگهی های گزارش شده</h1>
+
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model._Report_SaleAd)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int row = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item._Report_SaleAd.Brand)
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.ID"><span class="badge bg-danger"><i class="fa fa-trash"></i></span></a>
+                        </td>
+                    </tr>
+                    row++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@model Domain.SubCategory
+
+@{
+    ViewData["Title"] = "حذف زیردسته";
+}
+
+<h1 class="mt-4">حذف زیردسته</h1>
+
+<h3>آیا از حذف این زیردسته مطمین هستید؟</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model._SubCategory_Categories)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model._SubCategory_Categories.Title)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index">بازگشت</a>
+    </form>
+</div>

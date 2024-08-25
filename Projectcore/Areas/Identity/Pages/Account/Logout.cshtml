@@ -1,0 +1,21 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "خروج از حساب کاربری";
+}
+
+<header>
+    <h4 class="mt-4 h-logout">آیا در مورد خروج از حساب کاربری مطمین هستید؟</h4>
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link btn-logout">خروج</button>
+            </form>
+        }
+        else
+        {
+            <p>شما ورود نکرده اید.</p>
+        }
+    }
+</header>

@@ -1,0 +1,15 @@
+D:\coreprj\Projectcore\Temp\bin\Debug\net6.0\Temp.deps.json
+D:\coreprj\Projectcore\Temp\bin\Debug\net6.0\Temp.dll
+D:\coreprj\Projectcore\Temp\bin\Debug\net6.0\ref\Temp.dll
+D:\coreprj\Projectcore\Temp\bin\Debug\net6.0\Temp.pdb
+D:\coreprj\Projectcore\Temp\bin\Debug\net6.0\Domain.dll
+D:\coreprj\Projectcore\Temp\bin\Debug\net6.0\Domain.pdb
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.csproj.AssemblyReference.cache
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.GeneratedMSBuildEditorConfig.editorconfig
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.AssemblyInfoInputs.cache
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.AssemblyInfo.cs
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.csproj.CoreCompileInputs.cache
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.csproj.CopyComplete
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.dll
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\ref\Temp.dll
+D:\coreprj\Projectcore\Temp\obj\Debug\net6.0\Temp.pdb

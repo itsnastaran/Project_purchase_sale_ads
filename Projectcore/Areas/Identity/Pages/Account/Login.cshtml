@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "صفحه ورود";
+}
+
+<section id="main" class="clearfix user-page">
+    <div class="container">
+        <div class="row text-center">
+            <!-- user-login -->
+            <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="user-account">
+                    <h2>فرم ورود</h2>
+                    <!-- form -->
+                    <form id="account" method="post">
+              
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="ایمیل"/>
+                  </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="کلمه عبور"/>
+                    </div>
+                <div>
+                    <div class="form-group">
+                            <div class="checkbox pull-left">
+                                <label asp-for="Input.RememberMe" class="form-label">
+                                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+
+                            </div>
+                        </div>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary"> ورود</button>
+                </div>
+                
+            </form>
+          <!-- forgot-password -->
+                    <div class="user-option">
+                        <div class="pull-right forgot-password">
+                            <a id="forgot-password" asp-page="./ForgotPassword">فراموشی رمز عبور</a>
+                        </div>
+                    </div><!-- forgot-password -->
+                </div>
+                <a asp-page="./Register" class="btn-primary" asp-route-returnUrl="@Model.ReturnUrl">قبلا ثبت نام نکرده اید؟</a>
+
+            </div><!-- user-login -->
+        </div><!-- row -->
+    </div><!-- container -->
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

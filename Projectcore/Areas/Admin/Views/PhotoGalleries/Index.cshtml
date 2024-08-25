@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Domain.PhotoGallery>
+
+@{
+    ViewData["Title"] = "تصاویر";
+}
+
+<h1 class="mt-4">تصاویر</h1>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model._PhotoGallery_SaleAd)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int row = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item._PhotoGallery_SaleAd.Brand)
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.ID"><span class="badge bg-danger"><i class="fa fa-trash"></i></span></a>
+                        </td>
+                    </tr>
+                    row++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@{
+    var cat = ViewBag.Category;
+}
+<div id="banner-two" class="parallax-section">
+    <div class="row text-center">
+        <!-- banner -->
+        <div class="col-sm-12 ">
+            <div class="banner">
+                <h1 class="title"> بزرگترین خرید و فروش بدون واسطه‌ی آنلاین  </h1>
+                <h3> جستجو در بیش از  150،000  آگهی  طبقه بندی شده و ارسال آگهی های نامحدود رایگان!</h3>
+                <!-- banner-form -->
+                <div class="banner-form">
+                    <form asp-action="Search" method="get" asp-controller="Home">
+                        <!-- category-change -->
+                        <select name="id" class="dropdown category-dropdown">
+                            @foreach (var item in cat)
+                            {
+                                <option class="" value="@item.ID">@item.Title</option>
+                            }
+                        </select>
+                       
+                        <input type="text" class="form-control" name="text" placeholder="عبارت مورد نظر خود را تایپ کنید">
+                        <button type="submit" class="form-control" value="Search">جستجو</button>
+                    </form>
+                </div><!-- banner-form -->
+                <!-- banner-socail -->
+                <ul class="banner-socail">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                </ul><!-- banner-socail -->
+            </div>
+        </div><!-- banner -->
+    </div><!-- row -->
+</div>
+
+@section Scripts{
+
+}

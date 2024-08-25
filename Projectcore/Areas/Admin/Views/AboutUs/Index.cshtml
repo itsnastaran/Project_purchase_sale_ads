@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Domain.AboutUs>
+
+@{
+    ViewData["Title"] = "درباره ما";
+}
+<h1 class="mt-4">درباره ما</h1>
+<a asp-action="Create"><i style=" margin-right: 10px ; margin-top: 20px ;" class="iconadd fa-2x fa fa-plus-circle text-success"></i></a>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int row = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID"><span class="badge bg-success"><i class=" fa fa-edit"></i></span></a>
+                            <a asp-action="Details" asp-route-id="@item.ID"><span class="badge bg-primary"><i class="fa fa-eye"></i></span></a>
+                            <a asp-action="Delete" asp-route-id="@item.ID"><span class="badge bg-danger"><i class="fa fa-trash"></i></span></a>
+                        </td>
+                    </tr>
+                    row++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

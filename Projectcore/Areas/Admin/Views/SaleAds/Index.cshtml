@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Domain.SaleAd>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "آگهی ها";
+}
+<h1 class="mt-4">آگهی ها</h1>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                 
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int row = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@row</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                      
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                   
+                        <td>
+                            <a asp-action="IsActive" asp-route-id="@item.ID"><span class="badge bg-success"><i class=" fa fa-edit"></i></span></a>
+                             <a asp-action="Delete" asp-route-id="@item.ID"><span class="badge bg-danger"><i class="fa fa-trash"></i></span></a>
+                        </td>
+                    </tr>
+                    row++;
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+  @Html.PagedListPager((IPagedList)Model,page=> Url.Action("Index" ,"SaleAds", new { page = page}) ,
+new X.PagedList.Web.Common.PagedListRenderOptions{
+    DisplayItemSliceAndTotal = false,
+    ContainerDivClasses = new[] {"navigation"},
+    LiElementClasses = new[] {"page-item"},
+    PageClasses = new[] {"page-link"},
+    DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+    DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+    DisplayLinkToNextPage = X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+    DisplayLinkToPreviousPage =  X.PagedList.Web.Common.PagedListDisplayMode.IfNeeded,
+    UlElementClasses = new[] {"pagination"},
+    DisplayPageCountAndCurrentLocation = false,
+    
+})
+@section Scripts {
+     <script>
+        $(document).ready(function(){
+            $('ul.pagintion > li.disabled > a').addClass('page-link');
+        });
+    </script>
+}

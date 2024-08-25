@@ -1,0 +1,176 @@
+﻿@model Domain.SaleAd
+@{
+    ViewData["Title"] = "نمایش آگهی";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var galley = ViewBag.Gallery;
+    var category = ViewBag.Category;
+    var infouser = ViewBag.InfoUser;
+    var categorydetail = ViewBag.CategoryDetail;
+    var typepro = ViewBag.ProductType;
+    var typead = ViewBag.TypeAd;
+}
+
+<section id="main" class="clearfix details-page">
+    <div class="container">
+        <div class="breadcrumb-section">
+            <!-- breadcrumb -->
+            <ol class="breadcrumb">
+                <li><a href="/">خانه</a></li>
+                <li><a href="#">@ViewBag.Category.Title</a></li>
+                <li>@Model.Title</li>
+            </ol><!-- breadcrumb -->
+
+        </div>
+
+        <div class="section slider">
+            <div class="row">
+                <!-- carousel -->
+                <div class="col-lg-7">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            @{
+                                int j = 1;
+                                foreach (var item in galley)
+                                {
+                                    string active = "";
+
+                                    if (j == 1)
+                                    {
+                                        active = "active";
+                                    }
+                                    <li data-target="#product-carousel" data-slide-to="@item.ID" class="@active">
+                                        <img src="/Upload/Ad/@item.Title" alt="Carousel Thumb" class="img-fluid">
+                                    </li>
+                                    j++;
+                                }
+                            }
+
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <!-- item -->
+                            @{
+
+                                int i = 1;
+                                foreach (var item in galley)
+                                {
+                                    string active = "";
+
+                                    if (i == 1)
+                                    {
+                                        active = "active";
+                                    }
+                                    <div class="item carousel-item @active">
+                                        <div class="carousel-image">
+                                            <!-- image-wrapper -->
+                                        <img src="/Upload/Ad/@item.Title" alt="Featured Image" class="img-fluid">
+                                        </div>
+                                    </div>
+
+                                    <!-- item -->
+                                    i++;
+                                }
+                            }
+                        </div><!-- carousel-inner -->
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#product-carousel" role="button" data-slide="prev">
+                            <i class="fa fa-chevron-left"></i>
+                        </a>
+                        <a class="right carousel-control" href="#product-carousel" role="button" data-slide="next">
+                            <i class="fa fa-chevron-right"></i>
+                        </a><!-- Controls -->
+                    </div>
+                </div><!-- Controls -->
+                <!-- slider-text -->
+                <div class="col-lg-5">
+                    <div class="slider-text">
+                        <h2>@Model.Price تومان </h2>
+                        <h3 class="title">@Model.Title</h3>
+                        <p>
+                            <span>آگهی‌دهنده: <a href="#">@infouser.NameFamily</a></span>
+                            <span>شناسه آگهی:<a href="#" class="time"> @Model.ID</a></span>
+                        </p>
+                        <span class="icon"><i class="fa fa-clock-o"></i><a href="#">@Model.Date</a></span>
+
+                        <!-- short-info -->
+                        <div class="short-info">
+                            <h4>اطلاعات کوتاه</h4>
+                            <p><strong>وضعیت: </strong><a href="#">@typead.Title</a> </p>
+                            <p><strong>برند: </strong><a href="#">@Model.Brand</a> </p>
+                            <p>
+                                <strong>ویژگی‌ها: </strong>
+                                @foreach (var item in categorydetail)
+                                {
+                                    <a href="#">
+                                        @item.Title
+                                    </a>
+                                }
+
+                            </p>
+                            <p><strong>مدل: </strong><a href="#">@Model.Model</a></p>
+                        </div><!-- short-info -->
+                        <!-- contact-with -->
+                        <div class="contact-with">
+                            <h4>اطلاعات تماس </h4>
+                            <span class="btn btn-red show-number">
+                                <i class="fa fa-phone-square"></i>
+                                <span class="hide-text">برای مشاهده شماره تماس کلیک کنید</span>
+                                <span class="hide-number">@infouser.PhoneNumber </span>
+                            </span>
+
+                        </div><!-- contact-with -->
+                        <!-- social-links -->
+                        <div class="social-links">
+                            <h4></h4>
+                            <ul class="list-inline">
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="#"></a></li>
+                            </ul>
+                        </div><!-- social-links -->
+                    </div>
+                </div><!-- slider-text -->
+            </div>
+        </div><!-- slider -->
+
+        <div class="description-info">
+            <div class="row">
+                <!-- description -->
+                <div class="col-md-8">
+                    <div class="description">
+                        <h4>توضیحات</h4>
+                        <p>@Model.Description</p><br>
+
+                    </div>
+                </div><!-- description -->
+                <!-- description-short-info -->
+                <div class="col-md-4">
+                    <div class="short-info">
+                        <h4>اطلاعات کوتاه</h4>
+                        <!-- social-icon -->
+                        <ul>
+                            @if (User.Identity.IsAuthenticated == true)
+                            {
+                                <li><i class="fa fa-heart-o"></i><a href="/Account/Favorties?id=@Model.ID&idu=@infouser.Id">ذخیره به عنوان موردپسند</a></li>
+                                <li><i class="fa fa-exclamation-triangle"></i><a href="/Account/Report?id=@Model.ID">گزارش آگهی</a></li>
+                            }
+                            else
+                            {
+                                <li><i class="fa fa-heart-o"></i><a href="/Identity/Account/Login">جهت ثبت علاقه مندی ورود کنید</a></li>
+                                <li><i class="fa fa-exclamation-triangle"></i><a href="/Identity/Account/Login">جهت ثبت گزارش ورود کنید</a></li>
+
+                            }
+                        </ul><!-- social-icon -->
+                    </div>
+                </div>
+            </div><!-- row -->
+        </div><!-- description-info -->
+
+    </div><!-- container -->
+</section>
+

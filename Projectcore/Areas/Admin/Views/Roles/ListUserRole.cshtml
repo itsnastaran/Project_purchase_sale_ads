@@ -1,0 +1,40 @@
+﻿@{
+    var user = ViewBag.UserSelect;
+}
+<div class="row">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div class="form-group">
+                        <label class="control-label">نقش کاربر</label>
+                        <select name="role" class="control-label">
+                            @foreach (var item in ViewBag.RoleSelect)
+                            {
+                                <option value="@item.Name">
+                                    @item.Name
+                                </option>
+                            }
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">کاربر</label>
+                        <select name="id" class="control-label">
+
+                            <option value="@user.Id">
+                                @user.UserName
+                            </option>
+
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="اصافه کردن" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

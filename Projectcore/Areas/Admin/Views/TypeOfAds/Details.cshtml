@@ -1,0 +1,38 @@
+﻿@model Domain.TypeOfAd
+
+@{
+    ViewData["Title"] = "جزییات نوع آگهی";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>جزییات نوع آگهی</h1>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="callout callout-info">
+            <h6><i class="fa fa-arrow-left"></i>  @Html.DisplayNameFor(model => model.Title) :</h6>
+            @Html.DisplayFor(model => model.Title)
+        </div>
+        <
+        <a asp-action="Edit" asp-route-id="@Model?.ID"><span class="badge bg-success "><i class=" fa fa-edit fa-2x"></i></span></a>
+        <a asp-action="Index"><span class="badge bg-info"><i class=" fa fa-undo fa-2x"></i></span></a>
+
+    </div>
+    <div class="col-1"></div>
+
+
+</div>
+
+
+
+
+
+

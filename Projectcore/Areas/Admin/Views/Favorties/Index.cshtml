@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Domain.Favorties>
+
+@{
+    ViewData["Title"] = "آگهی های پسندیده شده";
+}
+
+<h1 class="mt-4">آگهی های پسندیده شده</h1>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserID)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model._Favorties_SaleAdId)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int row = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item._Favorties_SaleAdId.Title)
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.ID"><span class="badge bg-danger"><i class="fa fa-trash"></i></span></a>
+                        </td>
+                    </tr>
+                    row++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

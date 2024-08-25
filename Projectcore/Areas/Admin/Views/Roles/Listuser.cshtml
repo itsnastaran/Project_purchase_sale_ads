@@ -1,0 +1,37 @@
+﻿@{
+    var users = ViewBag.Listusers;
+    ViewData["Title"] = "کاربران";
+}
+<h1>لیست کاربران</h1>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>نام کاربری</td>
+                     <td>نام و نام خانوادگی</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                    foreach (var user in users)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@user.UserName</td>
+                            <td>@user.NameFamily</td>
+                            <td><a href="/Admin/Roles/ListUserRole?id=@user.Id">ویرایش دسترسی</a></td>
+                        </tr>
+
+                        i++;
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

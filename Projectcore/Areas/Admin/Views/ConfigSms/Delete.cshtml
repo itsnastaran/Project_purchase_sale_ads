@@ -1,0 +1,39 @@
+﻿@model Domain.ConfigSms
+
+@{
+    ViewData["Title"] = "حذف پیامک";
+}
+
+
+<h1 class="mt-4">حذف پیامک</h1>
+<h3 class="mt-4">از حذف این مورد مطمئن هستید؟</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Key)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Key)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Api)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Api)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.status)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index">بازگشت</a>
+    </form>
+</div>
